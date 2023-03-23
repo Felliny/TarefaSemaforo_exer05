@@ -32,7 +32,11 @@ public class ShowSemaforo extends Thread {
 
     private void login() {
         tempo= (int) (Math.random()* 1951)+ 50;
-
+        try {
+            sleep(tempo);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         if (tempo > 1000){
             System.out.println("O cliente #" + getId() + " recebeu um timeout.");
             timeout= 1;
@@ -42,6 +46,11 @@ public class ShowSemaforo extends Thread {
     private void compra() {
         if (timeout!=1){
             tempo= (int) (Math.random()* 2001)+ 1000;
+            try {
+                sleep(tempo);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             if (tempo > 2500){
                 System.out.println("O cliente #" + getId() + " estourou o tempo de sessão");
                 timeout = 1;
